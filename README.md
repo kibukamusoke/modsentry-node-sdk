@@ -15,7 +15,6 @@ import { ModsentryClient } from '@modsentry/sdk';
 
 const client = new ModsentryClient({
   apiKey: process.env.MODSENTRY_API_KEY,
-  baseUrl: 'https://api.modsentry.com',
 });
 
 const result = await client.moderateMessage({
@@ -25,6 +24,21 @@ const result = await client.moderateMessage({
 });
 
 console.log(result.decision);
+```
+
+## Default API URL
+
+If `baseUrl` is omitted, the SDK uses:
+
+`https://modsentry.appleberry.my`
+
+You can still override it:
+
+```ts
+const client = new ModsentryClient({
+  apiKey: process.env.MODSENTRY_API_KEY,
+  baseUrl: 'https://staging.modsentry.appleberry.my',
+});
 ```
 
 ## Monorepo SDK Generation
