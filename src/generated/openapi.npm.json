@@ -1,0 +1,279 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/v1/moderate/message": {
+      "post": {
+        "operationId": "ModerationController_moderateMessage",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModerateMessageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Moderation decision payload."
+          }
+        },
+        "security": [
+          {
+            "api-key": []
+          }
+        ],
+        "summary": "Moderate a single message using project API key auth.",
+        "tags": [
+          "Moderation"
+        ]
+      }
+    },
+    "/v1/moderate/batch": {
+      "post": {
+        "operationId": "ModerationController_moderateBatch",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModerateBatchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch moderation result list."
+          }
+        },
+        "security": [
+          {
+            "api-key": []
+          }
+        ],
+        "summary": "Moderate a batch of messages using project API key auth.",
+        "tags": [
+          "Moderation"
+        ]
+      }
+    },
+    "/v1/session/{sessionId}/settings": {
+      "get": {
+        "operationId": "ModerationController_getSessionSettings",
+        "parameters": [
+          {
+            "name": "sessionId",
+            "required": true,
+            "in": "path",
+            "description": "External session identifier.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": false,
+            "in": "query",
+            "description": "Project ID required when authenticating with dashboard JWT.",
+            "schema": {
+              "minLength": 8,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session settings payload."
+          }
+        },
+        "security": [
+          {
+            "api-key": []
+          },
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get session moderation settings.",
+        "tags": [
+          "Moderation"
+        ]
+      },
+      "post": {
+        "operationId": "ModerationController_updateSessionSettings",
+        "parameters": [
+          {
+            "name": "sessionId",
+            "required": true,
+            "in": "path",
+            "description": "External session identifier.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSessionSettingsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated session settings payload."
+          }
+        },
+        "security": [
+          {
+            "api-key": []
+          },
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Create or update session moderation settings.",
+        "tags": [
+          "Moderation"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Modsentry NPM API",
+    "description": "Public moderation endpoints for JavaScript SDK integrations.",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "Moderation"
+    }
+  ],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http",
+        "name": "Authorization",
+        "description": "Enter JWT token",
+        "in": "header"
+      },
+      "api-key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "Project API key for moderation endpoints."
+      }
+    },
+    "schemas": {
+      "ModerateMessageDto": {
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "description": "External session identifier.",
+            "minLength": 1,
+            "maxLength": 128,
+            "example": "session-42"
+          },
+          "userId": {
+            "type": "string",
+            "description": "External user identifier.",
+            "minLength": 1,
+            "maxLength": 128,
+            "example": "user-99"
+          },
+          "messageId": {
+            "type": "string",
+            "description": "External message identifier.",
+            "maxLength": 256,
+            "example": "msg-123"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Display name associated with the user.",
+            "maxLength": 128,
+            "example": "Trevor"
+          },
+          "message": {
+            "type": "string",
+            "description": "Raw chat message text for moderation.",
+            "minLength": 1,
+            "maxLength": 5000,
+            "example": "hello world"
+          },
+          "clientTs": {
+            "type": "string",
+            "description": "Client-side event timestamp (ISO-8601).",
+            "format": "date-time",
+            "example": "2026-03-04T10:15:30.000Z"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Additional message metadata.",
+            "additionalProperties": true,
+            "example": {
+              "channel": "global",
+              "locale": "en-US"
+            }
+          }
+        },
+        "required": [
+          "sessionId",
+          "userId",
+          "message"
+        ]
+      },
+      "ModerateBatchDto": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "description": "Messages to moderate in order.",
+            "minItems": 1,
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModerateMessageDto"
+            }
+          }
+        },
+        "required": [
+          "messages"
+        ]
+      },
+      "UpdateSessionSettingsDto": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "description": "Project ID required when using dashboard JWT auth.",
+            "minLength": 8
+          },
+          "mode": {
+            "type": "string",
+            "description": "Session moderation mode.",
+            "enum": [
+              "OPEN",
+              "SLOW",
+              "APPROVAL_ONLY",
+              "OFF"
+            ]
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      }
+    }
+  }
+}
