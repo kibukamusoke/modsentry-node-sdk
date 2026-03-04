@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/kibukamusoke/modsentry-node-sdk/compare/modsentry-sdk-v1.0.1...modsentry-sdk-v1.0.2) (2026-03-04)
+
+### Bug Fixes
+
+* publish after npm org setup ([8636c7f](https://github.com/kibukamusoke/modsentry-node-sdk/commit/8636c7f456ce5c667630c886c16a7b00f4592966))
+
 ## [1.0.1](https://github.com/kibukamusoke/modsentry-node-sdk/compare/modsentry-sdk-v1.0.0...modsentry-sdk-v1.0.1) (2026-03-04)
 
 ### Bug Fixes
