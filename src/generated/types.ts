@@ -1,7 +1,7 @@
 /*
  * AUTO-GENERATED FILE - DO NOT EDIT
  * Source: modsentry-api/openapi/swagger.npm.json
- * Generated at: 2026-03-04T14:32:56.345Z
+ * Generated at: 2026-03-04T14:51:13.767Z
  */
 
 export type ModerationDecision = 'ALLOW' | 'BLOCK' | 'MUTE' | 'SHADOW_MUTE' | 'REVIEW';

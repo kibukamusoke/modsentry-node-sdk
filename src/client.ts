@@ -18,11 +18,18 @@ export interface ModsentryClientOptions {
 }
 
 function normalizeBaseUrl(baseUrl?: string) {
+  const defaultBaseUrl = 'https://modsentry.appleberry.my';
+
   if (!baseUrl) {
-    return 'http://localhost:4000';
+    return defaultBaseUrl;
   }
 
-  return baseUrl.replace(/\/$/, '');
+  const trimmed = baseUrl.trim().replace(/\/$/, '');
+  if (/^https?:\/\//i.test(trimmed)) {
+    return trimmed;
+  }
+
+  return `https://${trimmed}`;
 }
 
 export class ModsentryClient {

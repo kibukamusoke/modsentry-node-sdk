@@ -37,6 +37,22 @@ From the repo root:
 npm --prefix modsentry-api run openapi:npm
 ```
 
+## Release Automation
+
+The package uses semantic versioning and `semantic-release`.
+
+- Local dry-run:
+  - `npm --prefix modsentry-npm run release:dry-run`
+- CI publish:
+  - GitHub Actions workflow: `.github/workflows/publish-modsentry-sdk.yml`
+  - Required repository secret: `NPM_TOKEN`
+
+Release versions are determined from Conventional Commits on `main`:
+
+- `feat:` -> minor
+- `fix:` -> patch
+- `BREAKING CHANGE:` -> major
+
 ## Exposed API
 
 - `moderateMessage`
