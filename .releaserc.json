@@ -1,4 +1,5 @@
 {
+  "repositoryUrl": "https://github.com/kibukamusoke/modsentry-node-sdk.git",
   "branches": ["main"],
   "tagFormat": "modsentry-sdk-v${version}",
   "plugins": [
