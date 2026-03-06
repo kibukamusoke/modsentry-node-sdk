@@ -1,6 +1,6 @@
 {
   "name": "@modsentry/sdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Official JavaScript SDK for ModSentry moderation APIs",
   "license": "MIT",
   "repository": {

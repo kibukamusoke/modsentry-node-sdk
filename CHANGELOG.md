@@ -1,3 +1,9 @@
+## [1.0.3](https://github.com/kibukamusoke/modsentry-node-sdk/compare/modsentry-sdk-v1.0.2...modsentry-sdk-v1.0.3) (2026-03-06)
+
+### Bug Fixes
+
+* update README usage examples ([822bfbe](https://github.com/kibukamusoke/modsentry-node-sdk/commit/822bfbe999392a5097740a095e9f6a6787284418))
+
 ## [1.0.2](https://github.com/kibukamusoke/modsentry-node-sdk/compare/modsentry-sdk-v1.0.1...modsentry-sdk-v1.0.2) (2026-03-04)
 
 ### Bug Fixes
