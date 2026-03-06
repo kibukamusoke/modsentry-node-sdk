@@ -1,7 +1,7 @@
 /*
  * AUTO-GENERATED FILE - DO NOT EDIT
  * Source: modsentry-api/openapi/swagger.npm.json
- * Generated at: 2026-03-05T14:41:57.803Z
+ * Generated at: 2026-03-06T07:39:04.719Z
  */
 
 import axios, { AxiosError, type AxiosInstance } from 'axios';
